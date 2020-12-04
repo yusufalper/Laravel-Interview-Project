@@ -14,4 +14,9 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\Person');
     }
+
+    public function adresses()
+    {
+        return $this->hasMany('App\Models\Adress');
+    }
 }
