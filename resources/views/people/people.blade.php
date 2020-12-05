@@ -11,7 +11,7 @@
                     <div class="add_com_button">
                         <a class="btn btn-info" href="{{ route('pnew')}}" role="button">Add Person</a>
                     </div>
-                    <div class="com_table">
+                    <div class="mobile_table">
                         <table class="table table-striped">
                             <thead>
                                 <tr>

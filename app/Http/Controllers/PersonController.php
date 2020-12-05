@@ -17,6 +17,7 @@ class PersonController extends Controller
     public function index()
     {
         $people = Person::paginate(10);
+    
         $personCompName=[];
 
         foreach ($people as $person) {

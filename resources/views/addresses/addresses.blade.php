@@ -11,7 +11,7 @@
                     <div class="add_com_button">
                         <a class="btn btn-info" href="{{ route('adrnew')}}" role="button">Add Address</a>
                     </div>
-                    <div class="com_table">
+                    <div class="mobile_table">
                         <table class="table table-striped">
                             <thead>
                                 <tr>

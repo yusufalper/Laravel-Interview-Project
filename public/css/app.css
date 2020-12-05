@@ -10903,6 +10903,19 @@ a.text-dark:focus {
   }
 }
 
+.my_card_parent {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+}
+
+.my_card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .com_item {
   margin: 0 5px;
 }
@@ -10911,10 +10924,6 @@ a.text-dark:focus {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.person_table_td{
-  padding-left: 20px;
 }
 
 .company_buttons {
@@ -10939,50 +10948,53 @@ a.text-dark:focus {
   color: white !important;
 }
 
-@media only screen and (max-width: 770px) {
-  .com_table table {
+@media only screen and (max-width: 992px) {
+  .my_card_parent {
+    flex-direction: column;
+  }
+
+  .mobile_table table {
     border-collapse: collapse;
     display: block;
     color: black !important;
   }
 
-  .com_table td,
+  .mobile_table td,
   th,
   tr {
     text-align: left;
     display: block;
   }
 
-  .com_table tbody,
+  .mobile_table tbody,
   thead {
     display: block;
   }
 
-  .com_table thead > tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+  .mobile_table thead > tr {
+    display: flex;
+    flex-direction: row;
   }
 
-  .com_table td {
+  .mobile_table td {
     border: none;
     border: 1px solid #eee;
     position: relative;
   }
 
-  .com_table tr td:last-child {
+  .mobile_table tr td:last-child {
     border-bottom: 3px solid black;
   }
 
-  .com_table th {
+  .mobile_table th {
     border: 1px solid #eee;
   }
 
-  .com_table tr {
+  .mobile_table tr {
     border: none;
   }
 
-  .com_table td:before {
+  .mobile_table td:before {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
@@ -10991,6 +11003,14 @@ a.text-dark:focus {
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
+  }
+}
+
+@media only screen and (max-width: 457px) {
+  .mobile_table thead > tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
 }
 

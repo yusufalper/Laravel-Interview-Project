@@ -7,6 +7,19 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+.my_card_parent{
+    display: flex;
+    flex-direction: row;
+    padding-top:10px;
+}
+
+.my_card{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+}
+
 .com_item {
     margin: 0 5px;
 }
@@ -39,52 +52,55 @@
     color: white !important;
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 992px) {
 
-    .com_table table {
+    .my_card_parent{
+        flex-direction: column;
+    }
+
+    .mobile_table table {
         border-collapse: collapse;
         display: block;
         color: black !important;
     }
 
-    .com_table td,
+    .mobile_table td,
     th,
     tr {
         text-align: left;
         display: block;
     }
 
-    .com_table tbody,
+    .mobile_table tbody,
     thead {
         display: block;
     }
 
-    .com_table thead>tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+    .mobile_table thead>tr {
+        display: flex;
+        flex-direction: row;
     }
 
-    .com_table td {
+    .mobile_table td {
         border: none;
         border: 1px solid #eee;
         position: relative;
     }
 
-    .com_table tr td:last-child {
+    .mobile_table tr td:last-child {
         border-bottom: 3px solid black;
     }
 
-    .com_table th {
+    .mobile_table th {
         border: 1px solid #eee;
     }
 
-    .com_table tr {
+    .mobile_table tr {
         border: none;
 
     }
 
-    .com_table td:before {
+    .mobile_table td:before {
         /* Now like a table header */
         position: absolute;
         /* Top/left values mimic padding */
@@ -93,5 +109,13 @@
         width: 45%;
         padding-right: 10px;
         white-space: nowrap;
+    }
+}
+
+@media only screen and (max-width: 457px) {
+    .mobile_table thead>tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
     }
 }

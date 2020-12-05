@@ -21,9 +21,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middlewa
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware("auth");
 
-Route::get('/panaroma', function () {
-    return view('panaroma');
-});
+Route::get('/ibbnearby/{id}', function () {
+    return view('ibbnearby');
+})->name('ibbnearby');
 
 Route::group(['prefix' => 'companies'], function () {
     Route::get('/', [CompanyController::class, 'index'])->name('comindex');

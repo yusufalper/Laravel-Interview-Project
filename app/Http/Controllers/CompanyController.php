@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -54,9 +55,14 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $com = Company::find($id);
+        $comp = Company::find($id);
+        $addresses = Company::find($id)->addresses()->get();
+        $people = Company::find($id)->people()->get();
 
-        return view("companies.company_show")->with('com', $com);
+        return view("companies.company_show")
+            ->with('comp', $comp)
+            ->with('addresses', $addresses)
+            ->with('people', $people);
     }
 
     /**
