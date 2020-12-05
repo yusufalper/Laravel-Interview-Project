@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CompanyController extends Controller
 {
@@ -14,7 +15,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $comps = Company::paginate(10);
+        return view("companies.companies")->with('comps', $comps);
     }
 
     /**
@@ -24,7 +26,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view("companies.company_create");
     }
 
     /**
@@ -35,7 +37,13 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $com = new Company();
+
+        $com->name = $request->name;
+        $com->internet_address = $request->internet_address;
+        $com->save();
+        Session::flash('msg_success', 'Company Successfully Added');
+        return view("companies.company_show")->with('com', $com);
     }
 
     /**
@@ -44,9 +52,11 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show($id)
     {
-        //
+        $com = Company::find($id);
+
+        return view("companies.company_show")->with('com', $com);
     }
 
     /**
@@ -55,9 +65,10 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        //
+        $com = Company::find($id);
+        return view("companies.company_edit")->with('com', $com);
     }
 
     /**
@@ -67,9 +78,15 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request)
     {
-        //
+        $com = Company::find($request->id);
+        $com->name = $request->name;
+        $com->internet_address = $request->internet_address;
+
+        $com->save();
+        Session::flash('msg_success', 'Company Info Successfully Updated');
+        return redirect()->Route('comshow', ['id' => $com['id']]);
     }
 
     /**
@@ -78,8 +95,10 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy($id)
     {
-        //
+        Company::destroy($id);
+        Session::flash('msg_success', 'Company Deleted');
+        return redirect()->back();
     }
 }

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AdressSeeder extends Seeder
+class AddressSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class AdressSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('adresses')->insert([
+        DB::table('addresses')->insert([
             'latitude' => "46.231342342",
             'longitude' => "45.23132334",
             'company_id' => 1

@@ -6,3 +6,92 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.com_item {
+    margin: 0 5px;
+}
+
+.com_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.company_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sub_button {
+    width: 50%;
+}
+
+.detail_button {
+    width: 30%;
+}
+
+.add_com_button {
+    margin-bottom: 10px !important;
+}
+
+.add_com_button a {
+    color: white !important;
+}
+
+@media only screen and (max-width: 770px) {
+
+    .com_table table {
+        border-collapse: collapse;
+        display: block;
+        color: black !important;
+    }
+
+    .com_table td,
+    th,
+    tr {
+        text-align: left;
+        display: block;
+    }
+
+    .com_table tbody,
+    thead {
+        display: block;
+    }
+
+    .com_table thead>tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .com_table td {
+        border: none;
+        border: 1px solid #eee;
+        position: relative;
+    }
+
+    .com_table tr td:last-child {
+        border-bottom: 3px solid black;
+    }
+
+    .com_table th {
+        border: 1px solid #eee;
+    }
+
+    .com_table tr {
+        border: none;
+
+    }
+
+    .com_table td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+}
