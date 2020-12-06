@@ -8,9 +8,34 @@
                 <div class="card-header">{{ __('People') }}</div>
 
                 <div class="card-body">
-                    <div class="add_com_button">
-                        <a class="btn btn-info" href="{{ route('pnew')}}" role="button">Add Person</a>
+
+                    @if (Session::has('msg_success'))
+                    <div class="col-sm-12">
+                        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                            {{ Session::get('msg_success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     </div>
+                    @endif
+
+                    <div class="add_com_button search_parent">
+                        <div style="color:white">
+                            <a class="btn btn-info" href="{{ route('pnew')}}" role="button">Add Person</a>
+                        </div>
+                        <div>
+                            <form class="form-inline mr-auto" action="{{ Route('psearch') }}" method="GET"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <input name="search" class="form-control" type="text" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-dark btn-rounded btn-sm my-0 ml-sm-2"
+                                    type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="mobile_table">
                         <table class="table table-striped">
                             <thead>
@@ -27,12 +52,16 @@
                                 @foreach ($people as $person)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration + $people->firstItem() - 1 }}</th>
-                                    <td>{{ $person['name']." ".$person['lastname'] }}</td>
+                                    <td>
+                                        <a href="{{ route('pshow',$person['id'])}}">
+                                            {{ $person['name']." ".$person['lastname'] }}
+                                        </a>
+                                    </td>
                                     <td>{{ $person['email'] }}</td>
                                     <td>{{ $person['phone'] }}</td>
                                     <td>
                                         <a href="{{ route('comshow',$person['company_id'])}}">
-                                            {{ $personCompName[$person['id']] }}
+                                            {{ $companyName[$person['id']] }}
                                         </a>
                                     </td>
                                     <td>

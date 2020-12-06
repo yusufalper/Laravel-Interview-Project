@@ -12,6 +12,6 @@ class Address extends Model
     protected $fillable = ['latitude', 'longitude', 'company_id'];
 
     public function company(){
-        $this->belongsTo('App\Models\Company');
+        return $this->belongsTo('App\Models\Company');
     }
 }

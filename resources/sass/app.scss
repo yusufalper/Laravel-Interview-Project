@@ -7,6 +7,22 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+.nearby_general{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.nearby_card{
+    text-align: center;
+    margin-top: -15px;
+    margin-bottom: 10px;
+}
+.nearby_frame {
+    position: absolute;
+    width: 90%;
+    height: 82%;
+}
+
 .my_card_parent{
     display: flex;
     flex-direction: row;
@@ -48,9 +64,11 @@
     margin-bottom: 10px !important;
 }
 
-.add_com_button a {
-    color: white !important;
-}
+@media only screen and (max-width: 600px) {
+    .nearby_frame {
+      height: 50%;
+    }
+  }
 
 @media only screen and (max-width: 992px) {
 
@@ -117,5 +135,8 @@
         position: absolute;
         top: -9999px;
         left: -9999px;
+    }
+    .com_item1{
+        margin-left: -8px;
     }
 }

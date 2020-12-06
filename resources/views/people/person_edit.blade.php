@@ -8,6 +8,19 @@
                 <div class="card-header">{{ $person['name'] }}</div>
 
                 <div class="card-body">
+                    @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div class="col-sm-12">
+                        <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                            {{$error}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
+                    
                     @if (Session::has('msg_success'))
                     <div class="col-sm-12">
                         <div class="alert  alert-success alert-dismissible fade show" role="alert">
@@ -43,11 +56,11 @@
 
                             <label for="company_id">Company</label>
                             <select class="form-control" name="company_id" id="company_id" style="margin-bottom: 10px;">
-                                @foreach ($comps as $com)
-                                @if ($person['company_id']==$com['id'])
-                                <option selected value="{{ $com['id'] }}">{{ $com['name'] }}</option>
+                                @foreach ($companies as $company)
+                                @if ($person['company_id']==$company['id'])
+                                <option selected value="{{ $company['id'] }}">{{ $company['name'] }}</option>
                                 @else
-                                <option value="{{ $com['id'] }}">{{ $com['name'] }}</option>
+                                <option value="{{ $company['id'] }}">{{ $company['name'] }}</option>
                                 @endif
                                 @endforeach
                             </select>

@@ -7,17 +7,18 @@
             <div class="card">
                 <div class="card-header">{{ $address['id']." Adress" }}</div>
 
-                <div class="card-body">
-                    @if (Session::has('msg_success'))
-                    <div class="col-sm-12">
-                        <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                            {{ Session::get('msg_success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                @if (Session::has('msg_success'))
+                <div class="col-sm-12">
+                    <div class="alert  alert-warning alert-dismissible fade show" role="alert">
+                        {{ Session::get('msg_success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    @endif
+                </div>
+                @endif
+
+                <div class="card-body">
                     <div>
                         <form action="{{ Route('adrupdate', $address['id']) }}" class="border border-light p-5"
                             method="POST" enctype="multipart/form-data">
@@ -35,11 +36,11 @@
 
                             <label for="company_id">Company</label>
                             <select class="form-control" name="company_id" id="company_id" style="margin-bottom: 10px;">
-                                @foreach ($comps as $com)
-                                @if ($address['company_id']==$com['id'])
-                                <option selected value="{{ $com['id'] }}">{{ $com['name'] }}</option>
+                                @foreach ($companies as $company)
+                                @if ($address['company_id']==$company['id'])
+                                <option selected value="{{ $company['id'] }}">{{ $company['name'] }}</option>
                                 @else
-                                <option value="{{ $com['id'] }}">{{ $com['name'] }}</option>
+                                <option value="{{ $company['id'] }}">{{ $company['name'] }}</option>
                                 @endif
                                 @endforeach
                             </select>
@@ -51,6 +52,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

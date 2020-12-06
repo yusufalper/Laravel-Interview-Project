@@ -15,8 +15,8 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->decimal('latitude', 11, 8);
-            $table->decimal('longitude', 11, 8);
+            $table->decimal('latitude', 12, 10);
+            $table->decimal('longitude', 12,10);
             $table->bigInteger ('company_id')->unsigned();
             $table->timestamps();
         });

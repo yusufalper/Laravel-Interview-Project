@@ -7,6 +7,17 @@
             <div class="card">
                 <div class="card-header">{{ __('New Address') }}</div>
 
+                @if (Session::has('msg_success'))
+                <div class="col-sm-12">
+                    <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                        {{ Session::get('msg_success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                @endif
+
                 <div class="card-body">
                     <div>
                         <form action="{{ Route('adradd') }}" class="border border-light p-5" method="POST"
@@ -22,8 +33,8 @@
 
                             <label for="company_id">Company</label>
                             <select class="form-control" name="company_id" id="company_id" style="margin-bottom: 10px;">
-                                @foreach ($comps as $com)
-                                <option value="{{ $com['id'] }}">{{ $com['name'] }}</option>
+                                @foreach ($companies as $company)
+                                <option value="{{ $company['id'] }}">{{ $company['name'] }}</option>
                                 @endforeach
                             </select>
 
@@ -34,6 +45,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

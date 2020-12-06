@@ -7,6 +7,19 @@
             <div class="card">
                 <div class="card-header">{{ __('New Person') }}</div>
 
+                @if($errors->any())
+                @foreach ($errors->all() as $error)
+                <div class="col-sm-12">
+                    <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                        {{$error}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+
                 <div class="card-body">
                     <div>
                         <form action="{{ Route('padd') }}" class="border border-light p-5" method="POST"
@@ -30,8 +43,8 @@
 
                             <label for="company_id">Company</label>
                             <select class="form-control" name="company_id" id="company_id" style="margin-bottom: 10px;">
-                                @foreach ($comps as $com)
-                                <option value="{{ $com['id'] }}">{{ $com['name'] }}</option>
+                                @foreach ($companies as $company)
+                                <option value="{{ $company['id'] }}">{{ $company['name'] }}</option>
                                 @endforeach
                             </select>
 

@@ -10903,6 +10903,23 @@ a.text-dark:focus {
   }
 }
 
+.nearby_general {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.nearby_card {
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+
+.nearby_frame {
+  position: absolute;
+  width: 90%;
+  height: 82%;
+}
+
 .my_card_parent {
   display: flex;
   flex-direction: row;
@@ -10944,8 +10961,17 @@ a.text-dark:focus {
   margin-bottom: 10px !important;
 }
 
-.add_com_button a {
-  color: white !important;
+.search_parent{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+  .nearby_frame {
+    height: 50%;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -11011,6 +11037,10 @@ a.text-dark:focus {
     position: absolute;
     top: -9999px;
     left: -9999px;
+  }
+
+  .com_item1 {
+    margin-left: -10px;
   }
 }
 

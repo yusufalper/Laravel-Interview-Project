@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AddressController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NearbyController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CompanyController;
 
 /*
@@ -16,14 +17,10 @@ use App\Http\Controllers\CompanyController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth");
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/getContent', [App\Http\Controllers\HomeController::class, 'webSiteContent'])->name('content');
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware("auth");
-
-Route::get('/ibbnearby/{id}', function () {
-    return view('ibbnearby');
-})->name('ibbnearby');
 
 Route::group(['prefix' => 'companies'], function () {
     Route::get('/', [CompanyController::class, 'index'])->name('comindex');
@@ -33,6 +30,8 @@ Route::group(['prefix' => 'companies'], function () {
     Route::get('/{id}/edit', [CompanyController::class, 'edit'])->name("comedit");
     Route::put('/{id}', [CompanyController::class, 'update'])->name("comupdate");
     Route::delete('/{id}', [CompanyController::class, 'destroy'])->name("comdelete");
+    Route::get('/search/company', [CompanyController::class, 'search'])->name("comsearch");
+
 });
 
 Route::group(['prefix' => 'people'], function () {
@@ -43,6 +42,7 @@ Route::group(['prefix' => 'people'], function () {
     Route::get('/{id}/edit', [PersonController::class, 'edit'])->name("pedit");
     Route::put('/{id}', [PersonController::class, 'update'])->name("pupdate");
     Route::delete('/{id}', [PersonController::class, 'destroy'])->name("pdelete");
+    Route::get('/search/person', [PersonController::class, 'search'])->name("psearch");
 });
 
 Route::group(['prefix' => 'addresses'], function () {
@@ -53,4 +53,9 @@ Route::group(['prefix' => 'addresses'], function () {
     Route::get('/{id}/edit', [AddressController::class, 'edit'])->name("adredit");
     Route::put('/{id}', [AddressController::class, 'update'])->name("adrupdate");
     Route::delete('/{id}', [AddressController::class, 'destroy'])->name("adrdelete");
+});
+
+Route::group(['prefix' => 'nearby'], function () {
+    Route::get('/{id}', [NearbyController::class, 'list'])->name('nearby');
+    Route::get('/', [NearbyController::class, 'index'])->name('nearbyhome');
 });
