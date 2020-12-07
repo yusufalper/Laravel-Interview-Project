@@ -19,4 +19,8 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\Address');
     }
+    public function site_content()
+    {
+        return $this->hasOne('App\Models\CompanyWebSite');
+    }
 }

@@ -15,9 +15,15 @@ class AddressSeeder extends Seeder
     public function run()
     {
         DB::table('addresses')->insert([
-            'latitude' => "46.231342342",
-            'longitude' => "45.23132334",
+            'latitude' => "41.0137178958",
+            'longitude' => "28.9554797258",
             'company_id' => 1
+        ]);
+
+        DB::table('addresses')->insert([
+            'latitude' => "41.3137178958",
+            'longitude' => "29.2554797258",
+            'company_id' => 2
         ]);
     }
 }

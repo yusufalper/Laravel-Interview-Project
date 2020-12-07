@@ -44,8 +44,9 @@
                                         <tr>
                                             <td colspan="2">
                                                 <div class="com_div" style="justify-content: space-between">
-                                                    <a class="btn btn-warning com_item"
-                                                        href="{{ route('comedit', $company['id'])}}" role="button">Update
+                                                    <a class="btn btn-info com_item"
+                                                        href="{{ route('comedit', $company['id'])}}"
+                                                        role="button">Update
                                                         Info</a>
 
                                                     <form action="{{ Route('comdelete', $company['id'])}}" method="POST"
@@ -151,6 +152,29 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+
+            @if (isset($site_content))
+                
+            @endif
+            <div class="card website_content" id="accordionWeb">
+
+                <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseWeb" aria-expanded="true"
+                    aria-controls="collapseWeb">
+
+                    <div id="headingWeb" class="card-header my_card">
+                        <div>▲</div>
+                        <h5 class="mb-0">
+                            {{ __('Web Site Content ') }}{{ $company['name'] }}
+                        </h5>
+                        <div>▼</div>
+                    </div>
+
+                </button>
+
+                <div class="website_content_body" id="collapseWeb" class="collapse show" aria-labelledby="headingWeb"
+                data-parent="#accordionWeb">{!! $site_content['site_content'] !!}</div>
             </div>
         </div>
     </div>

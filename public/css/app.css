@@ -10933,6 +10933,17 @@ a.text-dark:focus {
   align-items: center;
 }
 
+.website_content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top:20px;
+}
+
+.website_content_body{
+  padding: 20px;
+}
+
 .com_item {
   margin: 0 5px;
 }
@@ -10961,7 +10972,7 @@ a.text-dark:focus {
   margin-bottom: 10px !important;
 }
 
-.search_parent{
+.search_parent {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11040,7 +11051,7 @@ a.text-dark:focus {
   }
 
   .com_item1 {
-    margin-left: -10px;
+    margin-left: -8px;
   }
 }
 

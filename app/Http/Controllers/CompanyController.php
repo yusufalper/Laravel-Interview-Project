@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Jobs\SiteContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +16,8 @@ class CompanyController extends Controller
     }
 
     public function index()
-    {
+    {   
+        $companies=Company::all();
         $companies = Company::paginate(10);
         return view("companies.companies")->with('companies', $companies);
     }
@@ -29,18 +31,18 @@ class CompanyController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'internet_address' => 'required|max:255',
+            'internet_address' => 'required|url',
         ]);
 
         if ($validator->fails()) {
-            Session::flash('msg_success', 'company name or internet address cannot be empty');
-            return redirect()->back();
+            return redirect()->back()->withErrors($validator);
         } else {
             $company = new Company();
 
             $company->name = $request->name;
             $company->internet_address = $request->internet_address;
             $company->save();
+
             Session::flash('msg_success', 'Company Successfully Added');
             return redirect()->Route('comshow', ['id' => $company['id']]);
         }
@@ -52,10 +54,15 @@ class CompanyController extends Controller
         $addresses = Company::find($id)->addresses()->get();
         $people = Company::find($id)->people()->get();
 
+        #websitecontent
+        SiteContent::dispatch($company->id, $company->internet_address);
+        $site_content = Company::find($id)->site_content()->first();
+
         return view("companies.company_show")
             ->with('company', $company)
             ->with('addresses', $addresses)
-            ->with('people', $people);
+            ->with('people', $people)
+            ->with('site_content', $site_content);
     }
 
     public function edit($id)
@@ -69,18 +76,17 @@ class CompanyController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'internet_address' => 'required|max:255',
+            'internet_address' => 'required|url',
         ]);
 
         if ($validator->fails()) {
-            Session::flash('msg_success', 'company name or internet address cannot be empty');
-            return redirect()->back();
+            return redirect()->back()->withErrors($validator);
         } else {
             $company = Company::find($request->id);
             $company->name = $request->name;
             $company->internet_address = $request->internet_address;
-
             $company->save();
+
             Session::flash('msg_success', 'Company Info Successfully Updated');
             return redirect()->Route('comshow', ['id' => $company['id']]);
         }

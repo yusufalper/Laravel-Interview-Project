@@ -17,7 +17,12 @@ class CompanySeeder extends Seeder
     {
         DB::table('companies')->insert([
             'name' => Str::random(10),
-            'internet_address' => Str::random(15),
+            'internet_address' => "https://tr.wikipedia.org",
+        ]);
+
+        DB::table('companies')->insert([
+            'name' => Str::random(10),
+            'internet_address' => "https://codician.com",
         ]);
     }
 }
